@@ -1,0 +1,4 @@
+services:
+    GaylordP\FormFontAwesomeBundle\Form\Extension\FormTypeExtension:
+        tags:
+            - 'form.type_extension'

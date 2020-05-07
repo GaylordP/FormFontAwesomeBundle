@@ -1,0 +1,59 @@
+{% use 'bootstrap_base_layout.html.twig' with date_widget as base_date_widget %}
+{% use 'bootstrap_4_layout.html.twig' %}
+
+{% block form_widget_simple -%}
+    {{ block('ico_start') }}
+    {{- parent() -}}
+    {{ block('ico_end') }}
+{%- endblock form_widget_simple %}
+
+{% block choice_widget_collapsed -%}
+    {{ block('ico_start') }}
+    {{- parent() -}}
+    {{ block('ico_end') }}
+{%- endblock choice_widget_collapsed %}
+
+{% block textarea_widget -%}
+    {{ block('ico_start') }}
+    {{- parent() -}}
+    {{ block('ico_end') }}
+{%- endblock textarea_widget %}
+
+{% block date_widget -%}
+    {{ block('ico_start') }}
+    {%- if widget != 'single_text' and not valid -%}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) -%}
+        {% set valid = true %}
+    {%- endif -%}
+    {{- block('base_date_widget') -}}
+    {{ block('ico_end') }}
+{%- endblock date_widget %}
+
+{% block time_widget -%}
+    {{ block('ico_start') }}
+    {{- parent() -}}
+    {{ block('ico_end') }}
+{%- endblock time_widget %}
+
+{% block datetime_widget -%}
+    {{ block('ico_start') }}
+    {{- parent() -}}
+    {{ block('ico_end') }}
+{%- endblock datetime_widget %}
+
+{% block ico_start -%}
+    {% if ico is not empty %}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fas fa-{{ ico }}"></i>
+                </span>
+            </div>
+    {% endif %}
+{%- endblock ico_start %}
+
+{% block ico_end -%}
+    {% if ico is not empty %}
+        </div>
+    {% endif %}
+{%- endblock ico_end %}
